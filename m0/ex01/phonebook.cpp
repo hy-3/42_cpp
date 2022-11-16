@@ -96,28 +96,46 @@ void search(int i, PhoneBook p[])
 		cout << setw(10);
 		cout << k << "|";
 
-		cout << setw(10);
 		firstName = p[k].getFirstName();
 		if (firstName.length() > 10)
 			cout << firstName.substr(0, 9) << ".";
-		else
+		else {
+			int j = 0;
+			while (j < 10 - firstName.length())
+			{
+				cout << " ";
+				j++;
+			}
  			cout << firstName;
+		}
 		cout << "|";
 
-		cout << setw(10);
 		lastName = p[k].getLastName();
 		if (lastName.length() > 10)
 			cout << lastName.substr(0, 9) << ".";
-		else
+		else {
+			int j = 0;
+			while (j < 10 - lastName.length())
+			{
+				cout << " ";
+				j++;
+			}
 			cout << lastName;
+		}
 		cout << "|";
 
-		cout << setw(10);
 		nickname = p[k].getNickname();
 		if (nickname.length() > 10)
 			cout << nickname.substr(0, 9) << "." << "\n";
-		else
+		else {
+			int j = 0;
+			while (j < 10 - nickname.length())
+			{
+				cout << " ";
+				j++;
+			}
 			cout << nickname << "\n";
+		}
 		k++;
 	}
 }
