@@ -1,24 +1,16 @@
 NAME = phonebook
 CC = g++
-FLAG_WARN = -Wall -Wextra -Werror
+FLAG_WARN = #-Wall -Wextra -Werror
 SRC = phonebook.cpp
-OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FLAG_WARN) -o $(NAME)
+$(NAME): $(SRC)
+	$(CC) $(SRC) $(FLAG_WARN) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(FLAG_WARN) -c $< -o $@
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	make clean
+fclean:
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean re
