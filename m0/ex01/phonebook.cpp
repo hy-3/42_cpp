@@ -20,7 +20,9 @@ int main(int argc, char** argv)
 	string input;
 	PhoneBook p[8];
 
-	while ()
-	cin >> input;
+	while (input != "EXIT")
+	{
+		cin >> input;
+	}
 	return 0;
 }
