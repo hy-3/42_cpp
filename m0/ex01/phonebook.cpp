@@ -1,43 +1,43 @@
 #include "phonebook.hpp"
 
-void PhoneBook::setFirstName(string firstName)
+void PhoneBook::setFirstName(std::string firstName)
 {
 	this->firstName = firstName;
 }
-void PhoneBook::setLastName(string lastName)
+void PhoneBook::setLastName(std::string lastName)
 {
 	this->lastName = lastName;
 }
-void PhoneBook::setNickname(string nickname)
+void PhoneBook::setNickname(std::string nickname)
 {
 	this->nickname = nickname;
 }
-void PhoneBook::setPhoneNumber(string phoneNumber)
+void PhoneBook::setPhoneNumber(std::string phoneNumber)
 {
 	this->phoneNumber = phoneNumber;
 }
-void PhoneBook::setDarkestSecret(string darkestSecret)
+void PhoneBook::setDarkestSecret(std::string darkestSecret)
 {
 	this->darkestSecret = darkestSecret;
 }
 
-string PhoneBook::getFirstName()
+std::string PhoneBook::getFirstName()
 {
 	return firstName;
 }
-string PhoneBook::getLastName()
+std::string PhoneBook::getLastName()
 {
 	return lastName;
 }
-string PhoneBook::getNickname()
+std::string PhoneBook::getNickname()
 {
 	return nickname;
 }
-string PhoneBook::getPhoneNumber()
+std::string PhoneBook::getPhoneNumber()
 {
 	return phoneNumber;
 }
-string PhoneBook::getDarkestSecret()
+std::string PhoneBook::getDarkestSecret()
 {
 	return darkestSecret;
 }

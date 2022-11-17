@@ -1,29 +1,29 @@
-#include "Account.hpp"
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include "Account.hpp"
 
 int	Account::getNbAccounts( void ) {
-	return (_nbAccounts);
+	return _nbAccounts;
 }
 
 int	Account::getTotalAmount( void ) {
-	
+	return _totalAmount;
 }
 
 int	Account::getNbDeposits( void ) {
-
+	return _totalNbDeposits;
 }
 
 int	Account::getNbWithdrawals( void ) {
-
+	return _totalNbWithdrawals;
 }
 
 /*
 [19920104_091532] accounts:8;total:20049;deposits:0;withdrawals:0
 */
 void	Account::displayAccountsInfos( void ) {
-
+	std::cout << "accounts:" << getNbAccounts() << ";total:" << getTotalAmount() << ";deposits:" << getNbDeposits() << ";withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 /*
@@ -36,10 +36,10 @@ void	Account::displayAccountsInfos( void ) {
 [19920104_091532] index:6;amount:754;created
 [19920104_091532] index:7;amount:16576;created
 */
-Account::Account( int initial_deposit ) { //TODO: check if I need to implement Account(void);
+Account::Account( int initial_deposit ) {
 	makeDeposit(initial_deposit);
 	_displayTimestamp();
-	std::cout << "index:0;" << "amount:" << initial_deposit << ";created" << endl; //TODO: change index
+	std::cout << "index:" << getNbAccounts() << ";amount:" << initial_deposit << ";created" << std::endl;
 }
 
 /*
@@ -54,7 +54,7 @@ Account::Account( int initial_deposit ) { //TODO: check if I need to implement A
 */
 Account::~Account( void ) {
 	_displayTimestamp();
-	std::cout << "index:0;" << "amount:" << getTotalAmount() << ";closed" << endl; //TODO: change index
+	std::cout << "index:" << getNbAccounts() << ";amount:" << checkAmount() << ";closed" << std::endl;
 }
 
 /*
@@ -68,15 +68,17 @@ Account::~Account( void ) {
 [19920104_091532] index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
 */
 void	Account::makeDeposit( int deposit ) {
-
+	this->_amount = checkAmount() + deposit;
+	this->_nbDeposits++;
 }
 
 bool	Account::makeWithdrawal( int withdrawal ) {
-
+	this->_amount = checkAmount() - withdrawal;
+	this->_nbWithdrawals--;
 }
 
 int		Account::checkAmount( void ) const {
-
+	return _amount;
 }
 
 /*
@@ -90,24 +92,12 @@ int		Account::checkAmount( void ) const {
 [19920104_091532] index:7;amount:16576;deposits:0;withdrawals:0
 */
 void	Account::displayStatus( void ) const {
-
+	_displayTimestamp();
+	std::cout << "index:" << getNbAccounts() << ";amount:" << checkAmount() << ";deposits:" << getNbDeposits() << ";withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 void	Account::_displayTimestamp( void ) {
 	const auto now = std::chrono::system_clock::now();
 	const auto now_t = std::chrono::system_clock::to_time_t(now);
 	std::cout << "[" << std::put_time(std::localtime(&now_t), "%Y%m%d_%H%M%S") << "] ";
-}
-
-//TODO: tmp
-int main(void) {
-	Account account1(42);
-	Account account2(54);
-	Account account3(957);
-	Account account4(432);
-	Account account5(1234);
-	Account account6(0);
-	Account account7(754);
-	Account account8(16576);
-	return 0;
 }

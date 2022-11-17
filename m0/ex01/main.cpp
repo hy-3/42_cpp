@@ -1,6 +1,6 @@
 #include "phonebook.hpp"
 
-int isValidPhoneNumber(string str_pn)
+int isValidPhoneNumber(std::string str_pn)
 {
 	for (int i = 0; i < (int)str_pn.length(); i++)
 	{
@@ -12,27 +12,27 @@ int isValidPhoneNumber(string str_pn)
 
 void add(int i, PhoneBook p[])
 {
-	string fn;
-	string ln;
-	string nn;
-	string pn;
-	string ds;
+	std::string fn;
+	std::string ln;
+	std::string nn;
+	std::string pn;
+	std::string ds;
 
-	cout << "Type your first name: ";
-	cin >> fn;
-	cout << "Type your last name: ";
-	cin >> ln;
-	cout << "Type your nickname: ";
-	cin >> nn;
-	cout << "Type your phone number (int): ";
-	cin >> pn;
+	std::cout << "Type your first name: ";
+	std::cin >> fn;
+	std::cout << "Type your last name: ";
+	std::cin >> ln;
+	std::cout << "Type your nickname: ";
+	std::cin >> nn;
+	std::cout << "Type your phone number (int): ";
+	std::cin >> pn;
 	if (isValidPhoneNumber(pn) == 0)
 	{
-		cout << ">> [ADD] action failed: Please type numeric number.\n";
+		std::cout << ">> [ADD] action failed: Please type numeric number.\n";
 		return;
 	}
-	cout << "Type your darkest secret: ";
-	cin >> ds;
+	std::cout << "Type your darkest secret: ";
+	std::cin >> ds;
 	p[i % 8].setFirstName(fn);
 	p[i % 8].setLastName(ln);
 	p[i % 8].setNickname(nn);
@@ -44,21 +44,21 @@ void printSpace(int len)
 {
 	int i = 0;
 	while (i++ < 10 - len)
-		cout << " ";
+		std::cout << " ";
 }
 
-void printEachInfo(string str, char c)
+void printEachInfo(std::string str, char c)
 {
 	if (str.length() > 10)
 	{
-		cout << str.substr(0, 9) << ".";
+		std::cout << str.substr(0, 9) << ".";
 	}
 	else
 	{
 		printSpace(str.length());
-		cout << str;
+		std::cout << str;
 	}
-	cout << c;
+	std::cout << c;
 }
 
 void search(PhoneBook p[])
@@ -68,8 +68,8 @@ void search(PhoneBook p[])
 	{
 		if (p[k].getFirstName() == "")
 			break;
-		cout << setw(10);
-		cout << k << "|";
+		std::cout << std::setw(10);
+		std::cout << k << "|";
 		printEachInfo(p[k].getFirstName(), '|');
 		printEachInfo(p[k].getLastName(), '|');
 		printEachInfo(p[k].getNickname(), '\n');
@@ -79,13 +79,13 @@ void search(PhoneBook p[])
 
 int main(void)
 {
-	string input = "";
+	std::string input = "";
 	PhoneBook p[8];
 	int i = 0;
 
 	while (1)
 	{
-		cin >> input;
+		std::cin >> input;
 		if (input.compare("EXIT") == 0)
 			break;
 		if (input.compare("ADD") == 0)

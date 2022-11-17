@@ -4,7 +4,6 @@ FLAG_WARN = -Wall -Wextra -Werror
 SRC = main.cpp \
 	  phonebook.cpp
 
-
 all: $(NAME)
 
 $(NAME): $(SRC)

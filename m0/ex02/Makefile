@@ -1,7 +1,8 @@
 NAME = account
 CC = g++
 FLAG_WARN = #-Wall -Wextra -Werror //TODO change 
-SRC = Account.cpp
+SRC = Account.cpp \
+	  tests.cpp
 
 all: $(NAME)
 
