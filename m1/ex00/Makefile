@@ -1,8 +1,10 @@
-NAME = megaphone
-CC = c++
+NAME = zombie
+CC = g++
 FLAG_WARN = -Wall -Wextra -Werror -std=c++98
-
-SRC = megaphone.cpp
+SRC = main.cpp \
+	  Zombie.cpp \
+	  newZombie.cpp \
+	  randomChump.cpp
 
 all: $(NAME)
 
