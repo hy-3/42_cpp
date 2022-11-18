@@ -2,6 +2,7 @@ NAME = phonebook
 CC = c++
 FLAG_WARN = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
+	  Contact.cpp \
 	  PhoneBook.cpp
 
 all: $(NAME)

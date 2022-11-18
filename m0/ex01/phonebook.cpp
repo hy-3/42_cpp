@@ -1,51 +1,94 @@
 #include "PhoneBook.hpp"
 
-void PhoneBook::setFirstName(std::string firstName)
+PhoneBook::PhoneBook(void){	index = 0; }
+PhoneBook::~PhoneBook(void){}
+
+
+int isValidPhoneNumber(std::string str_pn)
 {
-	this->firstName = firstName;
-}
-void PhoneBook::setLastName(std::string lastName)
-{
-	this->lastName = lastName;
-}
-void PhoneBook::setNickname(std::string nickname)
-{
-	this->nickname = nickname;
-}
-void PhoneBook::setPhoneNumber(std::string phoneNumber)
-{
-	this->phoneNumber = phoneNumber;
-}
-void PhoneBook::setDarkestSecret(std::string darkestSecret)
-{
-	this->darkestSecret = darkestSecret;
-}
-void PhoneBook::setIndex(int index)
-{
-	this->index = index;
+	for (int i = 0; i < (int)str_pn.length(); i++)
+	{
+		if (!(isdigit(str_pn[i])))
+			return 0;
+	}
+	return 1;
 }
 
-std::string PhoneBook::getFirstName()
+void PhoneBook::add()
 {
-	return firstName;
+	std::string fn;
+	std::string ln;
+	std::string nn;
+	std::string pn;
+	std::string ds;
+
+	std::cout << "Type your first name: ";
+	std::cin >> fn;
+	std::cout << "Type your last name: ";
+	std::cin >> ln;
+	std::cout << "Type your nickname: ";
+	std::cin >> nn;
+	std::cout << "Type your phone number (int): ";
+	std::cin >> pn;
+	if (isValidPhoneNumber(pn) == 0)
+	{
+		std::cout << ">> [ADD] action failed: Please type numeric number.\n";
+		return;
+	}
+	std::cout << "Type your darkest secret: ";
+	std::cin >> ds;
+	this->contactArray[this->index % 8].setFirstName(fn);
+	this->contactArray[this->index % 8].setLastName(ln);
+	this->contactArray[this->index % 8].setNickname(nn);
+	this->contactArray[this->index % 8].setPhoneNumber(pn);
+	this->contactArray[this->index % 8].setDarkestSecret(ds);
+	this->index++;
 }
-std::string PhoneBook::getLastName()
+
+
+void printSpace(int len)
 {
-	return lastName;
+	int i = 0;
+	while (i++ < 10 - len)
+		std::cout << " ";
 }
-std::string PhoneBook::getNickname()
+
+void printEachInfo(std::string str, char c)
 {
-	return nickname;
+	if (str.length() > 10) {
+		std::cout << str.substr(0, 9) << ".";
+	} else {
+		printSpace(str.length());
+		std::cout << str;
+	}
+	std::cout << c;
 }
-std::string PhoneBook::getPhoneNumber()
+
+void printHeader(void)
 {
-	return phoneNumber;
+	std::cout << std::setw(11);
+	std::cout << "INDEX|";
+	std::cout << std::setw(11);
+	std::cout << "FIRSTNAME|";
+	std::cout << std::setw(11);
+	std::cout << "LASTNAME|";
+	std::cout << std::setw(10);
+	std::cout << "NICKNAME" << std::endl;
 }
-std::string PhoneBook::getDarkestSecret()
+
+void PhoneBook::search()
 {
-	return darkestSecret;
-}
-int PhoneBook::getIndex()
-{
-	return index;
+	printHeader();
+	int k = 0;
+	while (k < 8)
+	{
+		if (this->contactArray[k].getFirstName() == "")
+			break;
+		std::cout << std::setw(10);
+		std::cout << this->index << "|";
+		printEachInfo(this->contactArray[k].getFirstName(), '|');
+		printEachInfo(this->contactArray[k].getLastName(), '|');
+		printEachInfo(this->contactArray[k].getNickname(), '\n');
+		k++;
+	}
 }
