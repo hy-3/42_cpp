@@ -1,5 +1,8 @@
 #include "Contact.hpp"
 
+Contact::Contact(void){}
+Contact::~Contact(void){}
+
 /* Setter */
 void Contact::setFirstName(std::string firstName)
 {
@@ -20,6 +23,10 @@ void Contact::setPhoneNumber(std::string phoneNumber)
 void Contact::setDarkestSecret(std::string darkestSecret)
 {
 	this->darkestSecret = darkestSecret;
+}
+void Contact::setIndex(int index)
+{
+	this->index = index;
 }
 
 /* Getter */
@@ -42,4 +49,20 @@ std::string Contact::getPhoneNumber()
 std::string Contact::getDarkestSecret()
 {
 	return darkestSecret;
+}
+int Contact::getIndex()
+{
+	return index;
+}
+
+void Contact::printInfoWithSeparator(std::string str, char c)
+{
+	if (str.length() > 10) {
+		std::cout << str.substr(0, 9) << ".";
+	} else {
+		for (int i = 0; i < 10 - (int)str.length(); i++)
+			std::cout << " ";
+		std::cout << str;
+	}
+	std::cout << c;
 }
