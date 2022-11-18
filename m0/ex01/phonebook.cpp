@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 void PhoneBook::setFirstName(std::string firstName)
 {
@@ -20,6 +20,10 @@ void PhoneBook::setDarkestSecret(std::string darkestSecret)
 {
 	this->darkestSecret = darkestSecret;
 }
+void PhoneBook::setIndex(int index)
+{
+	this->index = index;
+}
 
 std::string PhoneBook::getFirstName()
 {
@@ -40,4 +44,8 @@ std::string PhoneBook::getPhoneNumber()
 std::string PhoneBook::getDarkestSecret()
 {
 	return darkestSecret;
+}
+int PhoneBook::getIndex()
+{
+	return index;
 }

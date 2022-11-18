@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int isValidPhoneNumber(std::string str_pn)
 {
@@ -10,7 +10,7 @@ int isValidPhoneNumber(std::string str_pn)
 	return 1;
 }
 
-void add(int i, PhoneBook p[])
+int add(int i, PhoneBook p[])
 {
 	std::string fn;
 	std::string ln;
@@ -29,7 +29,7 @@ void add(int i, PhoneBook p[])
 	if (isValidPhoneNumber(pn) == 0)
 	{
 		std::cout << ">> [ADD] action failed: Please type numeric number.\n";
-		return;
+		return 0;
 	}
 	std::cout << "Type your darkest secret: ";
 	std::cin >> ds;
@@ -38,6 +38,8 @@ void add(int i, PhoneBook p[])
 	p[i % 8].setNickname(nn);
 	p[i % 8].setPhoneNumber(pn);
 	p[i % 8].setDarkestSecret(ds);
+	p[i % 8].setIndex(i);
+	return 1;
 }
 
 void printSpace(int len)
@@ -61,15 +63,28 @@ void printEachInfo(std::string str, char c)
 	std::cout << c;
 }
 
+void printHeader(void)
+{
+	std::cout << std::setw(11);
+	std::cout << "INDEX|";
+	std::cout << std::setw(11);
+	std::cout << "FIRSTNAME|";
+	std::cout << std::setw(11);
+	std::cout << "LASTNAME|";
+	std::cout << std::setw(10);
+	std::cout << "NICKNAME" << std::endl;
+}
+
 void search(PhoneBook p[])
 {
+	printHeader();
 	int k = 0;
 	while (k < 8)
 	{
 		if (p[k].getFirstName() == "")
 			break;
 		std::cout << std::setw(10);
-		std::cout << k << "|";
+		std::cout << p[k].getIndex() << "|";
 		printEachInfo(p[k].getFirstName(), '|');
 		printEachInfo(p[k].getLastName(), '|');
 		printEachInfo(p[k].getNickname(), '\n');
@@ -89,7 +104,8 @@ int main(void)
 		if (input.compare("EXIT") == 0)
 			break;
 		if (input.compare("ADD") == 0)
-			add(i++, p);
+			if (add(i, p) == 1)
+				i++;
 		if (input.compare("SEARCH") == 0)
 			search(p);
 	}
