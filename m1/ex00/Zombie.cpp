@@ -1,13 +1,26 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) {
-	this->name = name;
+void Zombie::setName(std::string name) {
+	this->_name = name;
 }
 
 std::string Zombie::getName(void) {
-	return this->name;
+	return this->_name;
+}
+
+Zombie::Zombie(void){}
+
+Zombie::Zombie(std::string name) {
+	setName(name);
+}
+
+Zombie::~Zombie(void) {
+	setName("");
 }
 
 void Zombie::announce(void) {
-	std::cout << getName() << " BraiiiiiiinnnzzzZ..." << std::endl;
+	if (getName().empty())
+		std::cout << "The zombie doesn't have a name." << std::endl;
+	else
+		std::cout << getName() << " BraiiiiiiinnnzzzZ..." << std::endl;
 }
