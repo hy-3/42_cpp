@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void){	index = 0; }
+PhoneBook::PhoneBook(void){	num = 0; }
 PhoneBook::~PhoneBook(void){}
 
 void PhoneBook::add()
@@ -23,22 +23,23 @@ void PhoneBook::add()
 	}
 	std::cout << "Type your darkest secret: ";
 	std::cin >> ds;
-	this->contactArray[this->index % 8].setFirstName(fn);
-	this->contactArray[this->index % 8].setLastName(ln);
-	this->contactArray[this->index % 8].setNickname(nn);
-	this->contactArray[this->index % 8].setPhoneNumber(pn);
-	this->contactArray[this->index % 8].setDarkestSecret(ds);
-	this->contactArray[this->index % 8].setIndex(index);
-	this->index++;
+	this->contactArray[this->num % 8].setFirstName(fn);
+	this->contactArray[this->num % 8].setLastName(ln);
+	this->contactArray[this->num % 8].setNickname(nn);
+	this->contactArray[this->num % 8].setPhoneNumber(pn);
+	this->contactArray[this->num % 8].setDarkestSecret(ds);
+	this->contactArray[this->num % 8].setIndex(num);
+	this->num++;
 }
 
 void PhoneBook::search()
 {
 	std::cout << "     INDEX| FIRSTNAME|  LASTNAME|  NICKNAME" << std::endl;
+	std::cout << "-------------------------------------------" << std::endl;
 	int k = 0;
 	while (k < 8)
 	{
-		if (k == this->index)
+		if (k == this->num)
 			break;
 		std::cout << std::setw(10);
 		std::cout << this->contactArray[k].getIndex() << "|";

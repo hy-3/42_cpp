@@ -8,7 +8,7 @@ class PhoneBook
 {
 	private:
 		Contact contactArray[8];
-		int index;
+		int num;
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
