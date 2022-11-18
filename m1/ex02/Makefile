@@ -1,10 +1,7 @@
-NAME = zombie
+NAME = brain
 CC = c++
 FLAG_WARN = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp \
-	  Zombie.cpp \
-	  newZombie.cpp \
-	  randomChump.cpp
+SRC = main.cpp
 
 all: $(NAME)
 

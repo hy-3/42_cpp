@@ -1,5 +1,5 @@
 NAME = zombieHorde
-CC = g++
+CC = c++
 FLAG_WARN = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
 	  Zombie.cpp \
