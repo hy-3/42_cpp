@@ -3,9 +3,9 @@
 int main(void) {
 	Karen k;
 
-	k.complain("debug");
-	k.complain("info");
-	k.complain("warning");
-	k.complain("error");
+	k.complain("DEBUG");
+	k.complain("INFO");
+	k.complain("WARNING");
+	k.complain("ERROR");
 	return 0;
 }

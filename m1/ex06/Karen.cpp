@@ -30,8 +30,15 @@ void Karen::error() {
 }
 
 void Karen::complain(std::string level) {
+	int isLevelExist = 0;
 	for (int i = 0; i < 4; i++) {
-		if (loggerType[i].compare(level) == 0)
-			(this->*pointer[i])();
+		if (loggerType[i].compare(level) == 0) {
+			isLevelExist = 1;
+			int j = i;
+			while (j < 4)
+				(this->*pointer[j++])();
+		}
 	}
+	if (isLevelExist == 0)
+		std::cout << "Probably complaining about insignificant problems." << std::endl;
 }
