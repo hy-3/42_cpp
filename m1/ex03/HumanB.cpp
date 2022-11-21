@@ -2,6 +2,7 @@
 
 HumanB::HumanB(std::string name) {
 	this->_name = name;
+	this->_weapon = NULL;
 }
 
 HumanB::~HumanB(){}
@@ -19,5 +20,9 @@ void HumanB::setWeapon(Weapon &weapon) {
 }
 
 void HumanB::attack() {
-	std::cout << getName() << " attacks with his " << getWeapon()->getType() << std::endl;
+	Weapon* weapon = getWeapon();
+	if (weapon == NULL)
+		std::cout << "Weapon is not set yet." << std::endl;
+	else
+		std::cout << getName() << " attacks with his " << getWeapon()->getType() << std::endl;
 }
