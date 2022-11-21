@@ -2,8 +2,8 @@
 #include <fstream>
 
 void createOutputFileAndReplace(char *buffer, char* filename, char *s1, char *s2) {
-	std::string str_filename = std::string(filename);
-	std::ofstream output(str_filename.append(".replace"));
+	std::string str_filename = (std::string)filename + ".replace";
+	std::ofstream output(str_filename);
 
 	if (s1[0] == '\0') {
 		output << buffer;
@@ -11,7 +11,7 @@ void createOutputFileAndReplace(char *buffer, char* filename, char *s1, char *s2
 		for (int i = 0; buffer[i] != '\0'; i++) {
 			int k = i;
 			int j = 0;
-			while (buffer[k] == s1[j]) {
+			while (buffer[k] == s1[j] && (buffer[k] != '\0' || s1[j] != '\0')) {
 				k++;
 				j++;
 			}
@@ -53,7 +53,12 @@ int main(int argc, char **argv) {
 	}
 	length = getLengthOfFile(fs);
 	buffer = new char[length];
-	fs.read(buffer, length);
+	try {
+		fs.read(buffer, length);
+	} catch(std::ios_base::failure &e) {
+		std::cerr << "File read failed: " << e.what() << std::endl;
+		return 1;
+	}
 	createOutputFileAndReplace(buffer, argv[1], argv[2], argv[3]);
 	fs.close();
 	return 0;
