@@ -5,10 +5,6 @@ Karen::Karen(){
 	loggerType[1] = "INFO";
 	loggerType[2] = "WARNING";
 	loggerType[3] = "ERROR";
-	pointer[0] = &Karen::debug;
-	pointer[1] = &Karen::info;
-	pointer[2] = &Karen::warning;
-	pointer[3] = &Karen::error;
 }
 
 Karen::~Karen(){}
@@ -30,15 +26,18 @@ void Karen::error() {
 }
 
 void Karen::complain(std::string level) {
-	int isLevelExist = 0;
+	int pos = -1;
 	for (int i = 0; i < 4; i++) {
-		if (loggerType[i].compare(level) == 0) {
-			isLevelExist = 1;
-			int j = i;
-			while (j < 4)
-				(this->*pointer[j++])();
-		}
+		if (loggerType[i].compare(level) == 0)
+			pos = i;
 	}
-	if (isLevelExist == 0)
-		std::cout << "Probably complaining about insignificant problems." << std::endl;
+	switch(pos)
+	{
+		case 0: this->debug();
+		case 1: this->info();
+		case 2: this->warning();
+		case 3: this->error();
+				break;
+		default: std::cout << "Probably complaining about insignificant problems." << std::endl;
+	}
 }

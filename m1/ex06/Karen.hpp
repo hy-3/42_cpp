@@ -7,7 +7,6 @@
 class Karen {
 	private:
 		std::string loggerType[4];
-		void (Karen::*pointer[4])();
 		void debug();
 		void info();
 		void warning();
