@@ -6,8 +6,8 @@
 
 class Fixed {
 	private:
-		int _fixedPoint;
-		static int const _fractionalBits = 8;
+		int _value;
+		static int const _fractionalPart = 8;
 	public:
 		int getRawBits() const;
 		void setRawBits(int const raw);

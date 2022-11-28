@@ -2,11 +2,11 @@
 
 int Fixed::getRawBits() const {
 	std::cout << "getRawBits member function called" << std::endl;
-	return this->_fixedPoint;
+	return this->_value;
 }
 
 void Fixed::setRawBits(int const raw) {
-	this->_fixedPoint = raw;
+	this->_value = raw;
 }
 
 Fixed::Fixed() {
