@@ -10,7 +10,7 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat() const {
-	return (_value / (double)(1 << _fractionalPart));
+	return ((double)_value / (double)(1 << _fractionalPart));
 }
 
 int Fixed::toInt() const {
@@ -47,6 +47,6 @@ Fixed& Fixed::operator=(const Fixed &f) {
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed &fixed) {
-	return (out << fixed.toFloat());
+std::ostream& operator<<(std::ostream &out, const Fixed &f) {
+	return (out << f.toFloat());
 }
