@@ -1,22 +1,5 @@
 #include "Fixed.hpp"
 
-int Fixed::getRawBits() const {
-	std::cout << "getRawBits member function called" << std::endl;
-	return this->_value;
-}
-
-void Fixed::setRawBits(int const raw) {
-	this->_value = raw;
-}
-
-float Fixed::toFloat() const {
-	return ((double)_value / (double)(1 << _fractionalPart));
-}
-
-int Fixed::toInt() const {
-	return (_value >> _fractionalPart);
-}
-
 Fixed::Fixed() {
 	std::cout << "Default constructor called" << std::endl;
 	setRawBits(0);
@@ -39,6 +22,23 @@ Fixed::Fixed(const Fixed &f) {
 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
+}
+
+int Fixed::getRawBits() const {
+	std::cout << "getRawBits member function called" << std::endl;
+	return this->_value;
+}
+
+void Fixed::setRawBits(int const raw) {
+	this->_value = raw;
+}
+
+float Fixed::toFloat() const {
+	return ((double)_value / (double)(1 << _fractionalPart));
+}
+
+int Fixed::toInt() const {
+	return (_value >> _fractionalPart);
 }
 
 Fixed& Fixed::operator=(const Fixed &f) {

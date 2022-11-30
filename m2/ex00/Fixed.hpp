@@ -9,11 +9,11 @@ class Fixed {
 		int _value;
 		static int const _fractionalPart = 8;
 	public:
-		int getRawBits() const;
-		void setRawBits(int const raw);
 		Fixed();
 		Fixed(Fixed &f);
 		~Fixed();
+		int getRawBits() const;
+		void setRawBits(int const raw);
 		Fixed& operator=(const Fixed &f);
 };
 
