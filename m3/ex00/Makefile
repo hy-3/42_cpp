@@ -1,8 +1,8 @@
-NAME = a.out
+NAME = claptrap
 CC = c++
 FLAG_WARN = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
-	  Fixed.cpp
+	  ClapTrap.cpp
 OBJ = $(SRC:%.cpp=%.o)
 
 all: $(NAME)
