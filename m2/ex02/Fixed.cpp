@@ -9,7 +9,7 @@ Fixed::Fixed(const int i) {
 }
 
 Fixed::Fixed(const float f) {
-	setRawBits(roundf(f * (1 << _fractionalPart)));
+	setRawBits(roundf(f * (float)(1 << _fractionalPart)));
 }
 
 Fixed::Fixed(const Fixed &f) {
@@ -27,7 +27,7 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat() const {
-	return ((double)_value / (double)(1 << _fractionalPart));
+	return ((float)_value / (float)(1 << _fractionalPart));
 }
 
 int Fixed::toInt() const {
@@ -110,7 +110,7 @@ Fixed& Fixed::operator++() {
 
 Fixed Fixed::operator++(int) {
 	Fixed res(*this);
-	res.setRawBits(res.getRawBits() + 1);
+	this->setRawBits(res.getRawBits() + 1);
 	return res;
 }
 
@@ -121,7 +121,7 @@ Fixed& Fixed::operator--() {
 
 Fixed Fixed::operator--(int) {
 	Fixed res(*this);
-	res.setRawBits(res.getRawBits() - 1);
+	this->setRawBits(res.getRawBits() - 1);
 	return res;
 }
 
