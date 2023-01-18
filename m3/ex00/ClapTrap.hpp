@@ -1,6 +1,5 @@
-#pragma once
-#ifndef __CLAPTRAP_H__
-#define __CLAPTRAP_H__
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <iostream>
 
