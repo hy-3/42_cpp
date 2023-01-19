@@ -1,0 +1,14 @@
+#include "Dog.hpp"
+
+Dog::Dog() {
+	std::cout << "Dog constructor (type: Dog)" << std::endl;
+	Animal::setType("Dog");
+}
+
+Dog::~Dog() {
+	std::cout << "Dog destructor" << std::endl;
+}
+
+void Dog::makeSound() const {
+	std::cout << "[Dog] Woof Woof" << std::endl;
+}
