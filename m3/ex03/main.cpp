@@ -10,7 +10,9 @@ int main() {
 	d1.highFiveGuys();
 	d2.highFiveGuys();
 	d1.guardGate();
+	std::cout << "Gate keeper mode: " << d2.getGateKeeperMode() << std::endl;
 	d2.guardGate();
+	std::cout << "Gate keeper mode: " << d2.getGateKeeperMode() << std::endl;
 	d1.whoAmI();
 	d2.whoAmI();
 	return 0;

@@ -5,7 +5,7 @@ ScavTrap::ScavTrap(): ClapTrap::ClapTrap() {
 	setEnergyPoints(50);
 	setAttackDamage(20);
 	setGateKeeperMode(false);
-	std::cout << "ScavTrap Constructor with default name(42) is called." << std::endl;
+	std::cout << "ScavTrap Constructor(name: 42)" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name): ClapTrap::ClapTrap(name) {
@@ -13,21 +13,22 @@ ScavTrap::ScavTrap(std::string name): ClapTrap::ClapTrap(name) {
 	setEnergyPoints(50);
 	setAttackDamage(20);
 	setGateKeeperMode(false);
-	std::cout << "ScavTrap Constructor with specified name(" << name << ") is called." << std::endl;
+	std::cout << "ScavTrap Constructor(name: " << name << ")" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << "ScavTrap Destructor called." << std::endl;
+	std::cout << "ScavTrap Destructor" << std::endl;
 }
 
 void ScavTrap::attack(std::string const &target) {
-	std::cout << "[ScavTrap attack] " << this->getName() << " attacked to " << target;
-	std::cout << ", caused " << this->getAttackDamage() << " points of damage!" << std::endl;
+	std::cout << "*ScavTrap version ";
+	ClapTrap::attack(target);
 }
 
 void ScavTrap::guardGate() {
 	setGateKeeperMode(true);
-	std::cout << this->getName() << " is now in Gate keeper mode." << std::endl;
+	std::cout << "[GuardGate] ";
+	std::cout << "mode is ON (name: " << this->getName() << ")" << std::endl;
 }
 
 bool ScavTrap::getGateKeeperMode() {

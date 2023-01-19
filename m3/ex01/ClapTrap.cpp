@@ -1,39 +1,46 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(): _name("42"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << "ClapTrap Constructor with default name(42) is called." << std::endl;
-	
+	std::cout << "ClapTrap Constructor(name: 42)" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
-	if (_name.empty())
-		_name = "42";
-	std::cout << "ClapTrap Constructor with specified name(" << name << ") is called." << std::endl;
+	if (getName().empty())
+		setName("42");
+	std::cout << "ClapTrap Constructor(name: " << name << ")" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap Destructor called." << std::endl;
+	std::cout << "ClapTrap Destructor" << std::endl;
 }
 
 void ClapTrap::attack(std::string const &target) {
-	std::cout << getName() << " attacked to " << target;
-	std::cout << ", caused " << getAttackDamage() << " points of damage!" << std::endl;
+	std::cout << "[Attack] ";
+	if (getEnergyPoints() > 0) {
+		std::cout << getName() << " attacked to " << target;
+		std::cout << ", caused " << getAttackDamage() << " points of damage!" << std::endl;
+		setEnergyPoints(getEnergyPoints() - 1);
+	} else {
+		std::cout << "Attack failed (EP is 0)" << std::endl;
+	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
+	std::cout << "[Damage] ";
 	std::cout << getName() << " got " << amount << " points of damage";
-	if (getEnergyPoints() < amount) {
-		setEnergyPoints(0);
+	if (getHitPoints() < amount) {
+		setHitPoints(0);
 	} else {
-		setEnergyPoints(getEnergyPoints() - amount);
+		setHitPoints(getHitPoints() - amount);
 	}
-	std::cout << ", current energy point is " << getEnergyPoints() << std::endl;
+	std::cout << ", current HP is " << getHitPoints() << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
+	std::cout << "[Repair] ";
 	std::cout << getName() << " is repaired with " << amount << " points";
-	setEnergyPoints(getEnergyPoints() + amount);
-	std::cout << ", current energy point is " << getEnergyPoints() << std::endl;
+	setHitPoints(getHitPoints() + amount);
+	std::cout << ", current HP is " << getHitPoints() << std::endl;
 }
 
 std::string ClapTrap::getName() {
@@ -50,6 +57,10 @@ unsigned int ClapTrap::getEnergyPoints() {
 
 unsigned int ClapTrap::getAttackDamage() {
 	return this->_attackDamage;
+}
+
+void ClapTrap::setName(std::string n) {
+	this->_name = n;
 }
 
 void ClapTrap::setHitPoints(int i) {

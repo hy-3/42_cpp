@@ -4,20 +4,20 @@ FragTrap::FragTrap() : ClapTrap() {
 	setHitPoints(100);
 	setEnergyPoints(100);
 	setAttackDamage(30);
-	std::cout << "FragTrap Constructor with default name(42) is called." << std::endl;
+	std::cout << "FragTrap Constructor(name: 42)" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap(name) {
 	setHitPoints(100);
 	setEnergyPoints(100);
 	setAttackDamage(30);
-	std::cout << "FragTrap Constructor with specified name(" << name << ") is called." << std::endl;
+	std::cout << "FragTrap Constructor(name: " << name << ")" << std::endl;
 }
 
 FragTrap::~FragTrap() {
-	std::cout << "FragTrap Destructor called." << std::endl;
+	std::cout << "FragTrap Destructor" << std::endl;
 }
 
 void FragTrap::highFiveGuys() {
-	std::cout << "High five! by " << this->getName() << std::endl;
+	std::cout << "[HighFive] by " << this->getName() << std::endl;
 }

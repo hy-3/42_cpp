@@ -10,17 +10,25 @@ class ClapTrap {
 		unsigned int _energyPoints;
 		unsigned int _attackDamage;
 	public:
+		/* constructor, destructor */
 		ClapTrap();
 		ClapTrap(std::string name);
 		~ClapTrap();
-		void attack(std::string const &target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+
+		/* getter, setter */
 		std::string getName();
 		unsigned int getHitPoints();
 		unsigned int getEnergyPoints();
 		unsigned int getAttackDamage();
+		void setName(std::string n);
+		void setHitPoints(int i);
 		void setEnergyPoints(int i);
+		void setAttackDamage(int i);
+
+		/* methods */
+		void attack(std::string const &target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 };
 
 #endif
