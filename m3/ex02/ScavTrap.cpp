@@ -5,7 +5,7 @@ ScavTrap::ScavTrap(): ClapTrap::ClapTrap() {
 	setEnergyPoints(50);
 	setAttackDamage(20);
 	setGateKeeperMode(false);
-	std::cout << "ScavTrap Constructor(name: 42)" << std::endl;
+	std::cout << "ScavTrap Constructor (name: 42)" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name): ClapTrap::ClapTrap(name) {
@@ -13,7 +13,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap::ClapTrap(name) {
 	setEnergyPoints(50);
 	setAttackDamage(20);
 	setGateKeeperMode(false);
-	std::cout << "ScavTrap Constructor(name: " << name << ")" << std::endl;
+	std::cout << "ScavTrap Constructor (name: " << name << ")" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {

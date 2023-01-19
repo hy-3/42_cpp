@@ -4,14 +4,14 @@ FragTrap::FragTrap() : ClapTrap() {
 	setHitPoints(100);
 	setEnergyPoints(100);
 	setAttackDamage(30);
-	std::cout << "FragTrap Constructor(name: 42)" << std::endl;
+	std::cout << "FragTrap Constructor (name: 42)" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap(name) {
 	setHitPoints(100);
 	setEnergyPoints(100);
 	setAttackDamage(30);
-	std::cout << "FragTrap Constructor(name: " << name << ")" << std::endl;
+	std::cout << "FragTrap Constructor (name: " << name << ")" << std::endl;
 }
 
 FragTrap::~FragTrap() {

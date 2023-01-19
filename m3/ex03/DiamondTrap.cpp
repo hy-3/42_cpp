@@ -1,11 +1,11 @@
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(): ScavTrap("42_clap_name"), FragTrap("42_clap_name"), _name("42") {
-	std::cout << "DiamondTrap Constructor(name: 42)" << std::endl;
+	std::cout << "DiamondTrap Constructor (name: 42)" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string name): ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), _name(name) {
-	std::cout << "DiamondTrap Constructor(name: " << name << ")" << std::endl;
+	std::cout << "DiamondTrap Constructor (name: " << name << ")" << std::endl;
 }
 
 DiamondTrap::~DiamondTrap() {
