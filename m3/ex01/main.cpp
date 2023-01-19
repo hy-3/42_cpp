@@ -8,8 +8,8 @@ int main() {
 	s2.beRepaired(10);
 	s2.attack("42");
 	s1.guardGate();
-	std::cout << "mode: " << s2.getGateKeeperMode() << std::endl;
+	std::cout << "Taro gate keeper mode = " << s2.getGateKeeperMode() << std::endl;
 	s2.guardGate();
-	std::cout << "mode: " << s2.getGateKeeperMode() << std::endl;
+	std::cout << "Taro gate keeper mode = " << s2.getGateKeeperMode() << std::endl;
 	return 0;
 }

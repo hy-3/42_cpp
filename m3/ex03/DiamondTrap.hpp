@@ -13,11 +13,10 @@ class DiamondTrap : public ScavTrap, public FragTrap {
 		DiamondTrap(std::string name);
 		~DiamondTrap();
 
-		/* methods */
+		/* getter */
 		std::string getName();
-		void attack(std::string const &target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+	
+		/* method */
 		void whoAmI();
 };
 
