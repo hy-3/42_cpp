@@ -20,3 +20,7 @@ std::string WrongAnimal::getType() const {
 void WrongAnimal::setType(std::string t) {
 	this->type = t;
 }
+
+void WrongAnimal::makeSound() const {
+	std::cout << "[WrongAnimal] make a certain sound" << std::endl;
+}

@@ -9,14 +9,14 @@ class WrongAnimal {
 	public:
 		WrongAnimal();
 		WrongAnimal(std::string t);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
 		/* getter, setter */
 		std::string getType() const;
 		void setType(std::string t);
 
 		/* method */
-		virtual void makeSound() const {};
+		virtual void makeSound() const;
 };
 
 #endif

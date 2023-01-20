@@ -20,3 +20,7 @@ std::string Animal::getType() const {
 void Animal::setType(std::string t) {
 	this->type = t;
 }
+
+void Animal::makeSound() const {
+	std::cout << "[Animal] make a certain sound" << std::endl;
+}
