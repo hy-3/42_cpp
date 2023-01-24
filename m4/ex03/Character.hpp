@@ -1,14 +1,14 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include "ICharacter.hpp"
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Character : public ICharacter {
 	private:
 		std::string _name;
 		AMateria* _material[4];
-		int numOfMaterial;
+		int _numOfMaterial;
 	public:
 		Character();
 		Character(std::string name);
@@ -19,7 +19,6 @@ class Character : public ICharacter {
 		void use(int idx, ICharacter &target);
 		std::string const &getName() const;
 		int getNumOfMaterial() const;
-		void setName(std::string n);
 		void setNumOfMaterial(int i);
 		Character &operator=(const Character &c);
 };

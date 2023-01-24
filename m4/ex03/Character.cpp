@@ -1,19 +1,15 @@
 #include "Character.hpp"
 
-Character::Character(): _name("undefined") {}
+Character::Character(): _name("undefined"), _numOfMaterial(0) {}
 
-Character::Character(std::string name): _name(name) {}
+Character::Character(std::string name): _name(name), _numOfMaterial(0) {}
 
 Character::Character(const Character &c) {
-	this->setName(c.getName());
-	this->numOfMaterial = c.getNumOfMaterial();
-	int currNum = this->numOfMaterial;
-	if (currNum > 0) {
-		for (int i = 0; i < currNum; i++) {
-			delete this->_material[i];
-			this->_material[i] = c._material[i]->clone();
-		}
-	}
+	this->_name.assign(c.getName());
+	this->_numOfMaterial = c.getNumOfMaterial();
+	int currNum = this->_numOfMaterial;
+	for (int i = 0; i < currNum; i++)
+		this->_material[i] = c._material[i]->clone();
 }
 
 Character::~Character() {
@@ -28,7 +24,7 @@ void Character::equip(AMateria *m) {
 		_material[currNum] = m;
 		setNumOfMaterial(currNum + 1);
 	} else {
-		std::cout << "[Equip error] no space to equip more material." << std::endl;
+		std::cout << "[Equip] no space to equip more material." << std::endl;
 	}
 }
 
@@ -42,12 +38,15 @@ void Character::unequip(int idx) {
 			setNumOfMaterial(currNum - 1);
 		}
 	} else {
-		std::cout << "[Unequip error] idx is out of range." << std::endl;
+		std::cout << "[Unequip] idx is out of range." << std::endl;
 	}
 }
 
 void Character::use(int idx, ICharacter &target) {
-	_material[idx]->use(target);
+	if (0 <= idx && idx <= 3 && _material[idx])
+		_material[idx]->use(target);
+	else
+		std::cout << "[Use] Specify 0 - 3 range index or no material in that index." << std::endl;
 }
 
 std::string const &Character::getName() const {
@@ -55,26 +54,18 @@ std::string const &Character::getName() const {
 }
 
 int Character::getNumOfMaterial() const {
-	return this->numOfMaterial;
-}
-
-void Character::setName(std::string n) {
-	this->_name = n;
+	return this->_numOfMaterial;
 }
 
 void Character::setNumOfMaterial(int i) {
-	this->numOfMaterial = i;
+	this->_numOfMaterial = i;
 }
 
 Character &Character::operator=(const Character &c) {
-	this->setName(c.getName());
-	this->numOfMaterial = c.getNumOfMaterial();
-	int currNum = this->numOfMaterial;
-	if (currNum > 0) {
-		for (int i = 0; i < currNum; i++) {
-			delete this->_material[i];
-			this->_material[i] = c._material[i]->clone();
-		}
-	}
+	this->_name.assign(c.getName());
+	this->_numOfMaterial = c.getNumOfMaterial();
+	int currNum = this->_numOfMaterial;
+	for (int i = 0; i < currNum; i++)
+		this->_material[i] = c._material[i]->clone();
 	return *this;
 }

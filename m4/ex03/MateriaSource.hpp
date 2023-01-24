@@ -6,7 +6,7 @@
 class MateriaSource : public IMateriaSource {
 	private:
 		AMateria *_materialSource[4];
-		int numOfMaterialSource;
+		int _numOfMaterialSource;
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &ms);

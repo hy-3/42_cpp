@@ -1,16 +1,12 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource() {}
+MateriaSource::MateriaSource(): _numOfMaterialSource(0) {}
 
 MateriaSource::MateriaSource(const MateriaSource &ms){
-	this->numOfMaterialSource = ms.getNumOfMaterialSource();
-	int currNum = this->numOfMaterialSource;
-	if (currNum > 0) {
-		for (int i = 0; i < currNum; i++) {
-			delete this->_materialSource[i];
-			this->_materialSource[i] = ms._materialSource[i]->clone();
-		}
-	}
+	this->_numOfMaterialSource = ms.getNumOfMaterialSource();
+	int currNum = this->_numOfMaterialSource;
+	for (int i = 0; i < currNum; i++)
+		this->_materialSource[i] = ms._materialSource[i]->clone();
 }
 
 MateriaSource::~MateriaSource() {
@@ -25,7 +21,7 @@ void MateriaSource::learnMateria(AMateria *m) {
 		_materialSource[currNum] = m;
 		setNumOfMaterialSource(currNum + 1);
 	} else {
-		std::cout << "[LearnMateria error] MateriaSource's materia is full" << std::endl;
+		std::cout << "[LearnMateria] MateriaSource's materia is full" << std::endl;
 	}
 }
 
@@ -38,21 +34,17 @@ AMateria* MateriaSource::createMateria(std::string const &type) {
 }
 
 int MateriaSource::getNumOfMaterialSource() const {
-	return this->numOfMaterialSource;
+	return this->_numOfMaterialSource;
 }
 
 void MateriaSource::setNumOfMaterialSource(int i) {
-	this->numOfMaterialSource = i;
+	this->_numOfMaterialSource = i;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &ms) {
-	this->numOfMaterialSource = ms.getNumOfMaterialSource();
-	int currNum = this->numOfMaterialSource;
-	if (currNum > 0) {
-		for (int i = 0; i < currNum; i++) {
-			delete this->_materialSource[i];
-			this->_materialSource[i] = ms._materialSource[i]->clone();
-		}
-	}
+	this->_numOfMaterialSource = ms.getNumOfMaterialSource();
+	int currNum = this->_numOfMaterialSource;
+	for (int i = 0; i < currNum; i++)
+		this->_materialSource[i] = ms._materialSource[i]->clone();
 	return *this;
 }

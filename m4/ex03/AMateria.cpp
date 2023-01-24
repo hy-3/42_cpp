@@ -4,7 +4,9 @@ AMateria::AMateria(): type("undefined") {}
 
 AMateria::AMateria(std::string const &type): type(type) {}
 
-AMateria::AMateria(const AMateria &a) { this->type = a.getType(); }
+AMateria::AMateria(const AMateria &a) {
+	this->type.assign(a.getType());
+}
 
 AMateria::~AMateria() {}
 
@@ -17,6 +19,6 @@ void AMateria::use(ICharacter &target) {
 }
 
 AMateria &AMateria::operator=(const AMateria &a) {
-	this->type = a.getType();
+	this->type.assign(a.getType());
 	return *this;
 }
