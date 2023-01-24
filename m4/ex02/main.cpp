@@ -18,6 +18,10 @@ int main() {
 	delete dog;
 	delete cat;
 
+	/* Below declaration gives you an error as expected.
+	Animal *a = new Animal();
+	*/
+
 	Animal* arrayAnimal[4];
 	std::cout << "\n/*** constructors ***/" << std::endl;
 	for (int i = 0; i < 4;) {

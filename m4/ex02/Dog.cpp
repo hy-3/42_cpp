@@ -1,8 +1,15 @@
 #include "Dog.hpp"
 
-Dog::Dog(): _dogBrain(new Brain()) {
+Dog::Dog(): Animal("Dog"), _dogBrain(new Brain()) {
 	std::cout << "Dog constructor (type: Dog)" << std::endl;
-	Animal::setType("Dog");
+}
+
+Dog::Dog(const Dog &d) {
+	this->_dogBrain = new Brain();
+	Brain *sourceBrain = d.getBrain();
+	int numOfIdeas = sourceBrain->getCurrNumOfIdeas();
+	for (int i = 0; i < numOfIdeas; i++)
+		this->_dogBrain->addIdea(sourceBrain->getIdea(i));
 }
 
 Dog::~Dog() {
@@ -16,4 +23,13 @@ void Dog::makeSound() const {
 
 Brain *Dog::getBrain() const {
 	return this->_dogBrain;
+}
+
+Dog &Dog::operator=(const Dog &d) {
+	this->_dogBrain = new Brain();
+	Brain *sourceBrain = d.getBrain();
+	int numOfIdeas = sourceBrain->getCurrNumOfIdeas();
+	for (int i = 0; i < numOfIdeas; i++)
+		this->_dogBrain->addIdea(sourceBrain->getIdea(i));
+	return *this;
 }
