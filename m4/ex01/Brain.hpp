@@ -11,13 +11,13 @@ class Brain {
 		Brain();
 		~Brain();
 
-		/* methods */
 		void printAllIdeas() const;
 		void addIdea(std::string str);
+		std::string getIdea(int i);
 		
-		/* getter, setter */
 		int getCurrNumOfIdeas() const;
 		void setCurrNumOfIdeas(int i);
+
 };
 
 #endif

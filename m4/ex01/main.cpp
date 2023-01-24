@@ -18,6 +18,20 @@ int main() {
 	delete dog;
 	delete cat;
 
+	std::cout << "\n/*** check brain deep copy ***/" << std::endl;
+	Dog *d1 = new Dog();
+	d1->getBrain()->addIdea("Walk");
+	d1->getBrain()->addIdea("Run");
+	Dog *d2 = new Dog(*d1);
+	d1->getBrain()->addIdea("D1");
+	d2->getBrain()->addIdea("D2");
+	std::cout << "-- d1 ideas --" << std::endl;
+	d1->getBrain()->printAllIdeas();
+	std::cout << "-- d2 ideas --" << std::endl;
+	d2->getBrain()->printAllIdeas();
+	delete d1;
+	delete d2;
+
 	Animal* arrayAnimal[4];
 	std::cout << "\n/*** constructors ***/" << std::endl;
 	for (int i = 0; i < 4;) {

@@ -26,6 +26,10 @@ void Brain::addIdea(std::string str) {
 	}
 }
 
+std::string Brain::getIdea(int i) {
+	return _ideas[i];
+}
+
 int Brain::getCurrNumOfIdeas() const {
 	return this->_currNumOfIdeas;
 }

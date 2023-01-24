@@ -1,8 +1,15 @@
 #include "Cat.hpp"
 
-Cat::Cat(): _catBrain(new Brain()) {
+Cat::Cat(): Animal("Cat"), _catBrain(new Brain()) {
 	std::cout << "Cat constructor (type: Cat)" << std::endl;
-	Animal::setType("Cat");
+}
+
+Cat::Cat(const Cat &c) {
+	this->_catBrain = new Brain();
+	Brain *sourceBrain = c.getBrain();
+	int numOfIdeas = sourceBrain->getCurrNumOfIdeas();
+	for (int i = 0; i < numOfIdeas; i++)
+		this->_catBrain->addIdea(sourceBrain->getIdea(i));
 }
 
 Cat::~Cat() {
@@ -16,4 +23,13 @@ void Cat::makeSound() const {
 
 Brain *Cat::getBrain() const {
 	return this->_catBrain;
+}
+
+Cat &Cat::operator=(const Cat &c) {
+	this->_catBrain = new Brain();
+	Brain *sourceBrain = c.getBrain();
+	int numOfIdeas = sourceBrain->getCurrNumOfIdeas();
+	for (int i = 0; i < numOfIdeas; i++)
+		this->_catBrain->addIdea(sourceBrain->getIdea(i));
+	return *this;
 }
