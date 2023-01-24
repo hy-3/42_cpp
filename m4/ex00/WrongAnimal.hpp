@@ -8,15 +8,12 @@ class WrongAnimal {
 		std::string type;
 	public:
 		WrongAnimal();
+		WrongAnimal(const WrongAnimal &wa);
 		WrongAnimal(std::string t);
 		virtual ~WrongAnimal();
-
-		/* getter, setter */
 		std::string getType() const;
-		void setType(std::string t);
-
-		/* method */
 		virtual void makeSound() const;
+		WrongAnimal &operator=(const WrongAnimal &wa);
 };
 
 #endif

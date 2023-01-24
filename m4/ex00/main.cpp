@@ -5,7 +5,9 @@
 #include "WrongCat.hpp"
 
 int main() {
-	const Animal* meta = new Animal();
+	const Animal* meta = new Animal("test");
+	const Animal* copy = new Animal(*meta);
+	std::cout << (meta->getType() == copy->getType()) << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << "Type: " << j->getType() << std::endl;

@@ -1,11 +1,15 @@
 #include "Animal.hpp"
 
-Animal::Animal() {
+Animal::Animal(): type("undefined") {
 	std::cout << "Animal constructor (type: undefined)" << std::endl;
 }
 
+Animal::Animal(const Animal &a) {
+	this->type = a.getType();
+}
+
 Animal::Animal(std::string t) {
-	setType(t);
+	this->type = t;
 	std::cout << "Animal constructor (type: " << t << ")" << std::endl;
 }
 
@@ -17,10 +21,11 @@ std::string Animal::getType() const {
 	return this->type;
 }
 
-void Animal::setType(std::string t) {
-	this->type = t;
-}
-
 void Animal::makeSound() const {
 	std::cout << "[Animal] make a certain sound" << std::endl;
+}
+
+Animal &Animal::operator=(const Animal &a) {
+	this->type = a.getType();
+	return *this;
 }

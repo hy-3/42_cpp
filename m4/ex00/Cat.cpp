@@ -1,8 +1,7 @@
 #include "Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat(): Animal("Cat") {
 	std::cout << "Cat constructor (type: Cat)" << std::endl;
-	Animal::setType("Cat");
 }
 
 Cat::~Cat() {

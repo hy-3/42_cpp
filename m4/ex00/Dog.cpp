@@ -1,8 +1,7 @@
 #include "Dog.hpp"
 
-Dog::Dog() {
+Dog::Dog(): Animal("Dog") {
 	std::cout << "Dog constructor (type: Dog)" << std::endl;
-	Animal::setType("Dog");
 }
 
 Dog::~Dog() {

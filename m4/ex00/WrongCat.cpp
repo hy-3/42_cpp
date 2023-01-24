@@ -1,8 +1,7 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() {
+WrongCat::WrongCat(): WrongAnimal("WrongCat") {
 	std::cout << "WrongCat constructor (type: WrongCat)" << std::endl;
-	WrongAnimal::setType("WrongCat");
 }
 
 WrongCat::~WrongCat() {
