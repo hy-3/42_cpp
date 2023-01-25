@@ -15,7 +15,8 @@ Character::Character(const Character &c) {
 Character::~Character() {
 	int currNum = getNumOfMaterial();
 	for (int i = 0; i < currNum; i++)
-		delete _material[i];
+		if (_material[i] != NULL)
+			delete _material[i];
 }
 
 void Character::equip(AMateria *m) {
@@ -31,12 +32,13 @@ void Character::equip(AMateria *m) {
 void Character::unequip(int idx) {
 	int currNum = getNumOfMaterial();
 	if (0 <= idx && idx <= 3) {
-		_material[idx] = NULL;
-		if (idx < currNum - 1) {
-			for (int i = idx; i < currNum - 1; i++)
-				_material[i] = _material[i + 1];
+		if (_material[idx] != NULL) {
+			_material[idx] = NULL;
 			setNumOfMaterial(currNum - 1);
 		}
+		if (idx < currNum - 1)
+			for (int i = idx; i < currNum - 1; i++)
+				_material[i] = _material[i + 1];
 	} else {
 		std::cout << "[Unequip] idx is out of range." << std::endl;
 	}

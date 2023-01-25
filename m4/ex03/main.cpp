@@ -6,85 +6,60 @@
 #include "Cure.hpp"
 
 int main() {
-	{
-		IMateriaSource*	src;
-		AMateria		*tmp;
-		ICharacter		*cloud;
-		ICharacter		*sefy;
-		src = new MateriaSource();
-		src->learnMateria(new Ice());
-		src->learnMateria(new Ice());
-		src->learnMateria(new Cure());
-		tmp = new Cure();
-		src->learnMateria(tmp);
-		src->learnMateria(tmp);
-		std::cout << std::endl;
-		cloud = new Character("Cloud");
-		tmp = src->createMateria("ice");
-		cloud->equip(tmp);
-		tmp = src->createMateria("ice");
-		cloud->equip(tmp);
-		tmp = src->createMateria("cure");
-		cloud->equip(tmp);
-		tmp = src->createMateria("cure");
-		cloud->equip(tmp);
-		cloud->equip(tmp);
-		cloud->unequip(3);
-		cloud->equip(tmp);
-		std::cout << std::endl;
-		sefy = new Character("Sephiroth");
-		cloud->use(0, *sefy);
-		cloud->use(2, *sefy);
-		delete cloud;
-		delete sefy;
-		delete src;
-	}
-	std::cout << "------" << std::endl;
-	{
-		Character	*zack;
-		Character	*cloud;
-		ICharacter	*sefy;
-		zack = new Character("Zack");
-		zack->equip(new Ice());
-		zack->equip(new Cure());
-		cloud = new Character(*zack);
-		delete zack;
-		sefy = new Character("Sephiroth");
-		cloud->use(0, *sefy);
-		cloud->use(1, *sefy);
-		delete cloud;
-		std::cout << std::endl;
-		zack = new Character("Zack");
-		zack->equip(new Cure());
-		zack->equip(new Ice());
-		cloud = new Character("Cloud");
-		*cloud = *zack;
-		delete zack;
-		cloud->use(0, *sefy);
-		cloud->use(1, *sefy);
-		delete cloud;
-		delete sefy;
-	}
+	std::cout << "--- start ---" << std::endl;
+	IMateriaSource *src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	AMateria *materia = new Cure();
+	src->learnMateria(materia);
+	std::cout << ">>>>> print that array of materia is full." << std::endl;
+	src->learnMateria(materia);
+	src->learnMateria(materia);
 
-	std::cout << "------" << std::endl;
-	{
-		IMateriaSource* src = new MateriaSource();
-		src->learnMateria(new Ice());
-		src->learnMateria(new Cure());
-		ICharacter* me = new Character("me");
-		AMateria* tmp;
-		tmp = src->createMateria("ice");
-		me->equip(tmp);
-		tmp = src->createMateria("cure");
-		me->equip(tmp);
-		ICharacter* bob = new Character("bob");
-		me->use(0, *bob);
-		me->use(1, *bob);
-		delete bob;
-		delete me;
-		delete src;
-	}
+	ICharacter *mike = new Character("Mike");
+	ICharacter *lisa = new Character("Lisa");
+	materia = src->createMateria("ice");
+	mike->equip(materia);
+	materia = src->createMateria("ice");
+	mike->equip(materia);
+	materia = src->createMateria("cure");
+	mike->equip(materia);
+	materia = src->createMateria("cure");
+	mike->equip(materia);
 
-	std::cout << "end" << std::endl;
+	std::cout << ">>>>> print that array of equip is full." << std::endl;
+	mike->equip(materia);
+	mike->unequip(3);
+	std::cout << ">>>>> print that idx is out of range." << std::endl;
+	mike->unequip(4);
+	std::cout << ">>>>> print no material in that index(3) because it is unequipped." << std::endl;
+	mike->use(3, *lisa);
+	mike->equip(materia);
+	mike->use(0, *lisa);
+	mike->use(2, *lisa);
+	std::cout << ">>>>> print out of index because it is 4." << std::endl;
+	mike->use(4, *lisa);
+
+	Character *original = new Character("original");
+	Character *clone1 = new Character(*original);
+	AMateria *m = new Ice();
+	original->equip(m);
+	Character *clone2 = new Character(*original);
+	std::cout << ">>>>> check if it is cloned" << std::endl;
+	std::cout << "original : ";
+	original->use(0, *mike);
+	std::cout << "clone1   : ";
+	clone1->use(0, *mike);
+	std::cout << "clone2   : ";
+	clone2->use(0, *mike);
+
+	delete src;
+	delete mike;
+	delete lisa;
+	delete original;
+	delete clone1;
+	delete clone2;
+	std::cout << "--- end ---" << std::endl;
 	return (0);
 }
