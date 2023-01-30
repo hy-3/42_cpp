@@ -9,5 +9,6 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string target): Form("
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-
+	Form::checkExecution(executor);
+	std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
 }

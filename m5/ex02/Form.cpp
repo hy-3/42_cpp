@@ -8,6 +8,10 @@ const char* Form::GradeTooHighException::what() const throw() {
 	return "the grade is too high. (the grade should be >= 1)";
 }
 
+const char* Form::NotSignedException::what() const throw() {
+	return "the form is not signed.)";
+}
+
 Form::Form(): _name("undefined"), _gradeToSign(1), _gradeToExecute(1), _sign(false), _target("undefined") {}
 
 Form::Form(const Form &f): _name(f.getName()), _gradeToSign(f.getGradeToSign()), _gradeToExecute(f.getGradeToExecute()), _sign(f.getSign()), _target(f.getTarget()) {}
@@ -39,6 +43,13 @@ void Form::beSigned(const Bureaucrat &b) {
 	if (b.getGrade() <= getGradeToSign())
 		setSign(true);
 	else
+		throw GradeTooLowException();
+}
+
+void Form::checkExecution(Bureaucrat const & executor) const {
+	if (!this->getSign())
+		throw NotSignedException();
+	if (executor.getGrade() > this->getGradeToExecute())
 		throw GradeTooLowException();
 }
 

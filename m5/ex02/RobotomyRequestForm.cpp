@@ -9,5 +9,11 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string target): Form("Roboto
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-	
+	Form::checkExecution(executor);
+	std::cout << "rizzz... bzzzzzz..." << std::endl;
+	srand(time(NULL));
+	if (rand() % 2)
+		std::cout << this->getTarget() << " has been robotomized successfully." << std::endl;
+	else
+		std::cout << "Robotization of " << this->getTarget() << " has been failed." << std::endl;
 }

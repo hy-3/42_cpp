@@ -21,6 +21,10 @@ class Form {
 			public:
 				const char* what() const throw();
 		};
+		class NotSignedException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 		Form();
 	public:
 		Form(const Form &f);
@@ -33,6 +37,7 @@ class Form {
 		std::string getTarget() const;
 		void setSign(bool b);
 		void beSigned(const Bureaucrat &b);
+		void checkExecution(Bureaucrat const & executor) const;
 		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
