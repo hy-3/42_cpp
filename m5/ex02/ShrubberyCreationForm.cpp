@@ -10,7 +10,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	Form::checkExecution(executor);
-	std::fstream outputFile ((this->getTarget() + "_shrubbery").c_str());
+	std::ofstream outputFile ((this->getTarget() + "_shrubbery").c_str());
 	outputFile <<
     "                   O                         " << std::endl <<
     "                  ***                        " << std::endl <<

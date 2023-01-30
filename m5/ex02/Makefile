@@ -20,6 +20,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	rm -f *_shrubbery
 
 fclean:
 	make clean
