@@ -49,7 +49,7 @@ void Form::beSigned(const Bureaucrat &b) {
 void Form::checkExecution(Bureaucrat const & executor) const {
 	if (!this->getSign())
 		throw NotSignedException();
-	if (executor.getGrade() > this->getGradeToExecute())
+	else if (executor.getGrade() > this->getGradeToExecute())
 		throw GradeTooLowException();
 }
 
