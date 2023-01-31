@@ -4,6 +4,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
+//TODO: delete objects
 int main() {
 	Bureaucrat *taro = new Bureaucrat("taro", 50);
 	Bureaucrat *lisa = new Bureaucrat("lisa", 1);
