@@ -1,6 +1,6 @@
 NAME = convert
 CC = c++
-FLAG_WARN = #-Wall -Wextra -Werror -std=c++98
+FLAG_WARN = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
 	  conversion.cpp
 

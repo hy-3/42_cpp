@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cfloat>
+#include <iomanip>
 
 bool checkChar(std::string str);
 bool checkInt(std::string str);

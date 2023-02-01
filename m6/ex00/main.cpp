@@ -1,12 +1,30 @@
 #include "conversion.hpp"
 
-int main() {
-	std::string s = "+inff";
-	if (s == "+inff")
-		printf("jjjjj\n");
+void convert(std::string str)
+{
+	if (str.empty()) {
+		std::cout << "Argument error: empty string." << std::endl;
+		return;
+	}
+	if (checkChar(str))
+		convertToChar(str[0]);
+	else if (checkInt(str))
+		convertToInt(str);
+	else if (checkFloat(str))
+		convertToFloat(str);
+	else if (checkDouble(str))
+		convertToDouble(str);
+	else
+		std::cout << "Conversion failed (non of conversion was possible)." << std::endl;
+}
 
-	char *end;
-	printf("a: %li\n", strtol("-2147483649", &end, 10));
-	printf("b: %li\n", strtol("2147483648", &end, 10));
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		std::cout << "Argument error: specify one argument." << std::endl;
+		return 1;
+	}
+	convert(argv[1]);
 	return 0;
 }
