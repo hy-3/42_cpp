@@ -5,10 +5,11 @@
 
 Base* generate() {
 	srand(time(NULL));
-	if (rand() % 3 == 0) {
+	int randomNum = rand() % 3;
+	if (randomNum == 0) {
 		std::cout << "A is generated." << std::endl;
 		return new A();
-	} else if (rand() % 3 == 1) {
+	} else if (randomNum == 1) {
 		std::cout << "B is generated." << std::endl;
 		return new B();
 	} else {
@@ -19,38 +20,48 @@ Base* generate() {
 
 void identify(Base* p) {
 	if (dynamic_cast<A*>(p) != NULL) {
-		std::cout << "A is identified (pointer)." << std::endl;
+		std::cout << "It is A." << std::endl;
 	} else if (dynamic_cast<B*>(p) != NULL) {
-		std::cout << "B is identified (pointer)." << std::endl;
+		std::cout << "It is B." << std::endl;
 	} else if (dynamic_cast<C*>(p) != NULL) {
-		std::cout << "C is identified (pointer)." << std::endl;
+		std::cout << "It is C." << std::endl;
 	} else {
-		std::cout << "Non of A ~ C is identified (pointer)." << std::endl;
+		std::cout << "Non of A ~ C." << std::endl;
 	}
 }
 
 void identify(Base& p) {
 	try {
-		dynamic_cast<A&>(p);
-		std::cout << "A is identified (pointer)." << std::endl;
+		A a = dynamic_cast<A&>(p);
+		std::cout << "It is A." << std::endl;
 	} catch (std::exception e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "It is not A." << std::endl;
 	}
 	try {
-		dynamic_cast<B&>(p);
-		std::cout << "B is identified (pointer)." << std::endl;
+		B b = dynamic_cast<B&>(p);
+		std::cout << "It is B." << std::endl;
 	} catch (std::exception e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "It is not B." << std::endl;
 	}
 	try {
-		dynamic_cast<B&>(p);
-		std::cout << "C is identified (pointer)." << std::endl;
+		C c = dynamic_cast<C&>(p);
+		std::cout << "It is C." << std::endl;
 	} catch (std::exception e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "It is not C." << std::endl;
 	}
 }
 
 int main() {
+	std::cout << ">>> generate" << std::endl;
+	Base* obj = generate();
+
+	std::cout << "\n>>> identify (pointer)" << std::endl;
+	identify(obj);
+
+	std::cout << "\n>>> identify (reference)" << std::endl;
+	identify(*obj);
+
+	delete obj;
 
 	return 0;
 }
