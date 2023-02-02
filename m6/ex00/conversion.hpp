@@ -7,12 +7,10 @@
 
 bool checkCharPhase(std::string str);
 bool checkIntPhase(std::string str);
-bool checkFloatPhase(std::string str);
-bool checkDoublePhase(std::string str);
+bool checkFloatDoublePhase(std::string str);
 
 void convertCharPhase(char c);
 void convertIntPhase(std::string str);
-void convertFloatPhase(std::string str);
-void convertDoublePhase(std::string str);
+void convertFloatDoublePhase(std::string str);
 
 #endif
