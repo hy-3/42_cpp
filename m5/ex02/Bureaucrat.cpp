@@ -1,11 +1,11 @@
 #include "Bureaucrat.hpp"
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Error: the grade is too low. (the grade should be <= 150)";
+	return "Error: the grade is too low.";
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Error: the grade is too high. (the grade should be >= 1)";
+	return "Error: the grade is too high.";
 }
 
 Bureaucrat::Bureaucrat(): _name("undefined"), _grade(150) {}
@@ -35,14 +35,14 @@ void Bureaucrat::setGrade(int i) {
 }
 
 void Bureaucrat::incrementeGrade() {
-	int newGrade = getGrade() + 1;
+	int newGrade = getGrade() - 1;
 	if (newGrade > 150)
 		throw GradeTooLowException();
 	setGrade(newGrade);
 }
 
 void Bureaucrat::decrementeGrade() {
-	int newGrade = getGrade() - 1;
+	int newGrade = getGrade() + 1;
 	if (newGrade < 1)
 		throw GradeTooHighException();
 	setGrade(newGrade);
