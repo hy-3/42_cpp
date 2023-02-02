@@ -34,21 +34,15 @@ void identify(Base& p) {
 	try {
 		A a = dynamic_cast<A&>(p);
 		std::cout << "It is A." << std::endl;
-	} catch (std::exception e) {
-		std::cout << "It is not A." << std::endl;
-	}
+	} catch (std::exception &e) { }
 	try {
 		B b = dynamic_cast<B&>(p);
 		std::cout << "It is B." << std::endl;
-	} catch (std::exception e) {
-		std::cout << "It is not B." << std::endl;
-	}
+	} catch (std::exception &e) { }
 	try {
 		C c = dynamic_cast<C&>(p);
 		std::cout << "It is C." << std::endl;
-	} catch (std::exception e) {
-		std::cout << "It is not C." << std::endl;
-	}
+	} catch (std::exception &e) { }
 }
 
 int main() {
