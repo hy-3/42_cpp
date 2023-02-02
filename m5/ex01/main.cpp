@@ -8,12 +8,13 @@ int main() {
 	Form f1 = Form("f1", 100, 100);
 	Form f2 = Form("f2", 1, 1);
 
-	std::cout << b1 << std::endl;
-	std::cout << b2 << std::endl;
-	std::cout << f1 << std::endl;
-	std::cout << f2 << std::endl;
+	std::cout << ">>> objects" << std::endl;
+	std::cout << "[b1] " << b1 << std::endl;
+	std::cout << "[b2] " << b2 << std::endl;
+	std::cout << "[f1] " << f1 << std::endl;
+	std::cout << "[f2] " << f2 << std::endl;
 	
-	// error while constructing
+	std::cout << "\n>>> error while constructing" << std::endl;
 	try {
 		Form errorFrom = Form("errorForm", 200, 100);
 	} catch (std::exception &e) {
@@ -30,7 +31,7 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	// check sign
+	std::cout << "\n>>> check sign" << std::endl;
 	b1.signForm(f1);
 	b1.signForm(f2);
 	b2.signForm(f1);
