@@ -4,7 +4,7 @@ int main() {
 	// Bureaucrat();
 	Bureaucrat b = Bureaucrat("b", 150);
 	
-	// error while constructing
+	std::cout << ">>> error while constructing" << std::endl;
 	try {
 		Bureaucrat b2 = Bureaucrat("b2", 200);
 	} catch (std::exception &e) {
@@ -16,7 +16,7 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	// error while incrementing
+	std::cout << "\n>>> error while incrementing" << std::endl;
 	try {
 		b.incrementeGrade();
 		std::cout << b << std::endl;
@@ -24,7 +24,7 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	// no error
+	std::cout << "\n>>> no error" << std::endl;
 	try {
 		for (int i = 0; i < 149; i++)
 			b.decrementeGrade();
@@ -33,12 +33,12 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	// check copy constructor
+	std::cout << "\n>>> check copy constructor" << std::endl;
 	Bureaucrat bCopy = Bureaucrat(b);
 	std::cout << "[b] " << b << std::endl;
 	std::cout << "[bCopy] " << bCopy << std::endl;
 
-	// error while decrementing
+	std::cout << "\n>>> error while decrementing" << std::endl;
 	try {
 		bCopy.decrementeGrade();
 		std::cout << bCopy << std::endl;
