@@ -15,9 +15,12 @@ Form *Intern::makeForm(const std::string formName, const std::string formTarget)
 	type[1] = new RobotomyRequestForm(formTarget);
 	type[2] = new ShrubberyCreationForm(formTarget);
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++) {
 		if (!form[i].compare(formName))
 			return type[i];
+		else
+			delete type[i];
+	}
 	std::cout << "Intern couldn't create the form." << std::endl;
 	return NULL;
 }
