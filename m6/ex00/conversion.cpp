@@ -17,16 +17,16 @@ bool checkIntPhase(std::string str) {
 }
 
 bool checkFloatPhase(std::string str) {
-	double f;
+	double d;
 	char* endptr;
 
 	if (str == "-inff" || str == "+inff" || str == "nanf")
 		return true;
 	errno = 0;
-	f = strtod(str.c_str(), &endptr);
+	d = strtod(str.c_str(), &endptr);
 	if (errno || *endptr != 'f')
 		return false;
-	if ((f > 0 && (f > FLT_MAX || f < FLT_MIN)) || (f < 0 && (-f > FLT_MAX || -f < FLT_MIN)))
+	if ((d > 0 && (d > FLT_MAX || d < FLT_MIN)) || (d < 0 && (-d > FLT_MAX || -d < FLT_MIN)))
 		return false;
 	return true;
 }
@@ -39,8 +39,11 @@ bool checkDoublePhase(std::string str) {
 		return true;
 	errno = 0;
 	d = strtod(str.c_str(), &endptr);
-	if (errno || *endptr)
+	if (errno || *endptr) {
+		if (*endptr == 'f')
+			return true;
 		return false;
+	}
 	return true;
 }
 
@@ -73,20 +76,20 @@ void convertFloatPhase(std::string str) {
 		std::cout << "float: " << str << std::endl;
 		std::cout << "double: " << str.substr(0, str.length() - 1) << std::endl;
 	} else {
-		float f = strtod(str.c_str(), NULL);
-		if (f > 255.0f || f < 0.0f)
+		double d = strtod(str.c_str(), NULL);
+		if (d > 255 || d < 0)
 			std::cout << "char: impossible." << std::endl;
-		else if (isprint(static_cast<int>(f) == 0))
-			std::cout << "char: non displayable." << std::endl;
+		else if (isprint(static_cast<int>(d)))
+			std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
 		else
-			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
-		if (f > static_cast<float>(INT_MAX) || f < static_cast<float>(INT_MIN))
+			std::cout << "char: non displayable." << std::endl;
+		if (d > INT_MAX || d < INT_MIN)
 			std::cout << "int: impossible." << std::endl;
 		else
-			std::cout << "int: " << static_cast<int>(f) << std::endl;
+			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		std::cout << std::fixed << std::setprecision(1);
-		std::cout << "float: " << f << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(f) << std::endl;
+		std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+		std::cout << "double: " << d << std::endl;
 	}
 }
 
@@ -98,19 +101,18 @@ void convertDoublePhase(std::string str) {
 		std::cout << "double: " << str << std::endl;
 	} else {
 		double d = strtod(str.c_str(), NULL);
-		if (d > 255.0f || d < 0.0f)
+		if (d > 255 || d < 0)
 			std::cout << "char: impossible." << std::endl;
-		else if (isprint(static_cast<int>(d) == 0))
-			std::cout << "char: non displayable." << std::endl;
-		else
+		else if (isprint(static_cast<int>(d)))
 			std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+		else
+			std::cout << "char: non displayable." << std::endl;
 		if (d > static_cast<double>(INT_MAX) || d < static_cast<double>(INT_MIN))
 			std::cout << "int: impossible." << std::endl;
 		else
 			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		std::cout << std::fixed << std::setprecision(1);
-		if ((static_cast<float>(d) > 0 && (static_cast<float>(d) > FLT_MAX || static_cast<float>(d) < FLT_MIN)) \
-			|| (static_cast<float>(d) < 0 && (-static_cast<float>(d) > FLT_MAX || -static_cast<float>(d) < FLT_MIN)))
+		if ((d > 0 && (d > FLT_MAX || d < FLT_MIN)) || (d < 0 && (-d > FLT_MAX || -d < FLT_MIN)))
 			std::cout << "float: impossible." << std::endl;
 		else
 			std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
