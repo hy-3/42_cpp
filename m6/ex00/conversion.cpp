@@ -1,7 +1,7 @@
 #include "conversion.hpp"
 
 bool checkCharPhase(std::string str) {
-	if (str.length() == 1 && isdigit(str[0] - '0') && isprint(str[0] - '0'))
+	if (str.length() == 1 && isprint(str[0]))
 		return true;
 	return false;
 }
@@ -10,7 +10,7 @@ bool checkIntPhase(std::string str) {
 	long int i;
 	char* endptr;
 
-	i = strtol(str.c_str(), &endptr, 10);
+	i = strtol(str.c_str(), &endptr, 0);
 	if (i > INT_MAX || i < INT_MIN || *endptr)
 		return false;
 	return true;
