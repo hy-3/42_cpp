@@ -7,22 +7,26 @@ class Array {
 		T *_array;
 		unsigned int _size;
 	public:
-		Array(): _array(new T[]), _size(0) {}
+		Array(): _array(new T[0]), _size(0) {}
 		Array(unsigned int n): _array(new T[n]), _size(n) {}
 		Array(const Array &arr) {
-			for (int i = 0; i < _size; i++)
-				this->_array[i] = arr->_array[i];
-			this->_size = arr->_size;
+			T *tmp = new T[arr._size];
+			for (unsigned int i = 0; i < arr._size; i++)
+				tmp[i] = arr._array[i];
+			this->_array = tmp;
+			this->_size = arr._size;
 		}
 		~Array() { delete [] _array; }
-		int size() const { return this->_size };
+		int size() const { return this->_size; };
 		Array &operator=(const Array &arr) {
-			for (int i = 0; i < _size; i++)
-				this->_array[i] = arr->_array[i];
-			this->_size = arr->_size;
+			T *tmp = new T[arr._size];
+			for (unsigned int i = 0; i < arr._size; i++)
+				tmp[i] = arr._array[i];
+			this->_array = tmp;
+			this->_size = arr._size;
 			return *this;
 		}
-		T &operator[](const unsined int n) {
+		T &operator[](const unsigned int n) {
 			if (n >= _size)
 				throw (std::out_of_range("specified index is out of range."));
 			else
