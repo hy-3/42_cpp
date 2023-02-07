@@ -10,20 +10,20 @@ class Array {
 		Array(): _array(new T[0]), _size(0) {}
 		Array(unsigned int n): _array(new T[n]), _size(n) {}
 		Array(const Array &arr) {
-			T *tmp = new T[arr._size];
-			for (unsigned int i = 0; i < arr._size; i++)
+			T *tmp = new T[arr.size()];
+			for (unsigned int i = 0; i < arr.size(); i++)
 				tmp[i] = arr._array[i];
 			this->_array = tmp;
-			this->_size = arr._size;
+			this->_size = arr.size();
 		}
 		~Array() { delete [] _array; }
-		int size() const { return this->_size; };
+		unsigned int size() const { return this->_size; };
 		Array &operator=(const Array &arr) {
-			T *tmp = new T[arr._size];
-			for (unsigned int i = 0; i < arr._size; i++)
+			T *tmp = new T[arr.size()];
+			for (unsigned int i = 0; i < arr.size(); i++)
 				tmp[i] = arr._array[i];
 			this->_array = tmp;
-			this->_size = arr._size;
+			this->_size = arr.size();
 			return *this;
 		}
 		T &operator[](const unsigned int n) {
