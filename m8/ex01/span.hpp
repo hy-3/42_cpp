@@ -1,12 +1,15 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
-#include "iostream"
+#include <iostream>
+#include <vector>
 
 class Span {
 	private:
-		int _num;
-		class AlreadyFilledException : public std::exception {
+		unsigned int _size;
+		std::vector<int> _numbers;
+
+		class AlreadyFullException : public std::exception {
 			public:
 				const char* what() const throw();
 		};
@@ -16,12 +19,14 @@ class Span {
 		};
 	public:
 		Span();
-		Span(int n);
+		Span(const unsigned int n);
 		Span(const Span &s);
 		~Span();
-		void addNumber(int n);
-		void shortestSpan();
-		void longestSpan();
+		void addNumber(const int n);
+		void addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end, int vectorSize);
+		long int shortestSpan();
+		long int longestSpan();
+		Span &operator=(const Span &s);
 };
 
 #endif
